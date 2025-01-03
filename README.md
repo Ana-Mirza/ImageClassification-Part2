@@ -1,4 +1,4 @@
-# Image Classifier with DeepConv Network and MLP
+# Image Classifier with DeepConvNet, LeNet-5 and MLP
 
 This project contains the source code for image classification of two image datasets and the results obtained after training a mlp, lenet-5, and finetuning a pretrained resnet18 model.
 
