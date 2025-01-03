@@ -1,5 +1,7 @@
 # Image Classifier with DeepConv Network and MLP
 
+This project contains the source code for image classification of two image datasets and the results obtained after training a mlp, lenet-5, and finetuning a pretrained resnet18 model.
+
 ## Datasets Used
 1. Fashion-MNIST - https://github.com/zalandoresearch/fashion-mnist
 2. Fruits-360 - https://www.kaggle.com/datasets/moltean/fruits
