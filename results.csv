@@ -1,0 +1,3 @@
+Dataset,Input Type,Model,Data Split,Precision,Recall,F1 Score,Accuracy
+Fashion-MNIST,Liniarized Images,LeNet-5,Test,0.8888629094862477,0.8881,0.8883386788478527,0.8881
+Fashion-MNIST,Liniarized Images,MLP,Test,0.8603652852723828,0.8613,0.8604453003471679,0.8613
