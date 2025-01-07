@@ -76,7 +76,7 @@ _Number of Classes_:
 
 ---
 
-## Results Summary
+## Results Table
 
 | Model      | Dataset       | Input                      | Accuracy on Test |
 |------------|---------------|----------------------------|------------------|
@@ -92,3 +92,18 @@ _Number of Classes_:
 | ResNet-18  | Fruits-360    | Image Size: 32x32          | 96.97%           |
 
 ---
+
+## Summary 
+
+**1. Best Model**: ResNet-18 is the clear winner for both datasets and input types.
+*  ResNet-18 vs. LeNet-5: 
+    * +3.5% (Fashion-MNIST)
+    * +6.5% (Fruits-360)
+
+**2. Impact of Input**: Using image-based inputs consistently yields better performance.
+* Image Input vs. Attributes: 
+    * +7.2% (Fashion-MNIST)
+    * +3.4% (Fruits-360)
+
+**3. Future Improvements**: Experimenting with different augmentation techniques or fine-tuning hyperparameters could further improve performance, especially for LeNet-5 on Fashion-MNIST.
+* Augmentation Impact on Fashion-MNIST: -3.4% (LeNet-5)
