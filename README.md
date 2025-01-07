@@ -1,80 +1,94 @@
-# Image Classifier with DeepConvNet, LeNet-5 and MLP
+# Image Classifier with DeepConvNet, LeNet-5, and MLP
 
-This project contains the source code for image classification of two image datasets and the results obtained after training a mlp, lenet-5, and finetuning a pretrained resnet18 model.
+This project focuses on image classification using three different models: a Multi-Layer Perceptron (MLP), LeNet-5, and fine-tuning a pre-trained ResNet-18 model. The models were tested on two image datasets, with results summarized below.
 
-## Datasets Used
-1. Fashion-MNIST - https://github.com/zalandoresearch/fashion-mnist
-2. Fruits-360 - https://www.kaggle.com/datasets/moltean/fruits
+---
+
+## Datasets
+
+1. **[Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist)**: A dataset of 28x28 grayscale images of fashion items.
+2. **[Fruits-360](https://www.kaggle.com/datasets/moltean/fruits)**: A dataset of 100x100 RGB images of fruits.
+
+---
 
 ## Dependencies
-- [PyTprch_CIFAR10](https://github.com/huyvnphan/PyTorch_CIFAR10) for finetuning resnet18, which was trained CIFAR-10 dataset with images of sizes 32x32, with datasets above.
 
-- data extracted on the first iteration of this project - refer to this [link](https://github.com/Ana-Mirza/Image-Classifier)
+- **[PyTorch_CIFAR10](https://github.com/huyvnphan/PyTorch_CIFAR10)**: Used for fine-tuning ResNet-18, pre-trained on the CIFAR-10 dataset.
+- **Data Extraction**: The datasets were pre-processed during an earlier iteration of this project. Details can be found [here](https://github.com/Ana-Mirza/Image-Classifier).
 
-## Data File Structure
-```console
+---
+
+## Directory Structure
+
+```plaintext
 $ tree -L 1
 .
-├── data
-├── PyTorch_CIFAR10
-├── ImageClassifier2.ipynb
-├── README.md
-└── results.csv
+├── data                 # Contains pre-processed datasets
+├── PyTorch_CIFAR10      # Repository for ResNet-18 fine-tuning
+├── ImageClassifier2.ipynb  # Main notebook for training and evaluation
+├── README.md            # This README file
+└── results.csv          # Summary of results
 ```
 
-## Models Architecture
+---
 
-**General parameters:**
+## Model Architectures
 
-* batch size: 256
-* regularization: L2
-* loss function: Cross Entropy
-* optmizer: SGD with momentum 0.9
-* initial learning rate: 0.001
-* learning rate decay factor: 0.1
-* weight decay factor for L2 weight regularization: 1e-4
-* epoches: 200
+### **1. Multi-Layer Perceptron (MLP)**
 
-### Architecture used for MLP:
+| Layer  | Activation Function | Number of Neurons |
+|--------|----------------------|-------------------|
+| Input  | ReLU                 | Input Size        |
+| Hidden | ReLU                 | 256               |
+| Output | ---                  | Number of Classes |
 
-| Layer | Activation Function | Number of Neurons |
-| --- | --- | --- |
-| Layer 1 | ReLu | input size |
-| Layer 2 | ReLu | 256 |
-| Layer 3 | --- | #classes |
+---
 
-### Deep Convolution Network Architecture:
+### **2. Deep Convolutional Network (DeepConvNet)**
 
-* Conv2d(3, 6, k=5, padding=2) + LeakyReLU(negative_slope=0.01)  # img size = 28x28
-* AvgPool2d(2,2) # img size = 14x14
-* Dropout2d(0.2)
-* Conv2d(6, 16, 5) + ReLU # img size = 10x10
-* AvgPool2d(2,2) # img size = 5x5
-* Dropout2d(0.2)
-* Linearize(16, 5, 5)
-* FC(16 * 5 * 5, 120) + LeakyReLU(negative_slope=0.01)
-* FC(120, #classes)
+- **Conv2D(3, 6, k=5, padding=2)** + **LeakyReLU(negative_slope=0.01)**  
+  _Image size = 28x28_
+- **AvgPool2D(2, 2)**  
+  _Image size = 14x14_
+- **Dropout2D(0.2)**
+- **Conv2D(6, 16, k=5)** + **ReLU**  
+  _Image size = 10x10_
+- **AvgPool2D(2, 2)**  
+  _Image size = 5x5_
+- **Dropout2D(0.2)**
+- **Linearize(16, 5, 5)**
+- **Fully Connected (FC)**: 16 * 5 * 5 → 120 + **LeakyReLU(negative_slope=0.01)**
+- **Fully Connected (FC)**: 120 → Number of Classes
 
-Optimizer: Adam
+_Optimizer: Adam_  
+_Number of Classes_:  
+- 10 for Fashion-MNIST  
+- 70 for Fruits-360
 
-*#classes* = 10 for Fashion-MNIST / 70 for Fruits-260
+---
 
-### Finetuning ResNet18 trained on CIFAR-10
+### **3. Fine-Tuned ResNet-18**
 
-* epochs: 20
-* same parameters as above for optimizer
+- Pre-trained on CIFAR-10
+- **Epochs**: 20
+- **Optimizer**: Adam
+- Other parameters are the same as above.
+
+---
 
 ## Results Summary
 
-| Model | Dataset | Input | Accuracy on Test|
-|--- | --- | --- | --- |
-| MLP | Fashion-MNIST | Atributes: 16 | 83.1% | 
-| MLP | Fashion-MNIST | Image Size: 28x28 | 89.05% |
-| LeNet-5 | Fashion-MNIST | Image Size: 28x28 | 90.63% |
-| LeNet-5 | Fashion-MNIST | Image Size: 28x28 with Augmentation | 87.55% |
-| ResNet18 | Fashion-MNIST | Image Size: 28x28 | 93.8% |                                                                     
-| MLP | Fruits-360 | Atributes: 70 | 87.98% |
-| MLP | Fruits-360 | Image Size: 32x32 | 90.93% |
-| LeNet-5 | Fruits-360 | Image Size: 32x32 | 91.02% |
-| LeNet-5 | Fruits-360 | Image Size: 32x32 with Augmentation | 90.42% |
-| ResNet18 | Fruits-360 | Image Size: 32x32 | 96.97% |
+| Model      | Dataset       | Input                      | Accuracy on Test |
+|------------|---------------|----------------------------|------------------|
+| MLP        | Fashion-MNIST | Attributes: 16             | 83.10%           |
+| MLP        | Fashion-MNIST | Image Size: 28x28          | 89.05%           |
+| LeNet-5    | Fashion-MNIST | Image Size: 28x28          | 90.63%           |
+| LeNet-5    | Fashion-MNIST | Image Size: 28x28 + Aug.   | 87.55%           |
+| ResNet-18  | Fashion-MNIST | Image Size: 28x28          | 93.80%           |
+| MLP        | Fruits-360    | Attributes: 70             | 87.98%           |
+| MLP        | Fruits-360    | Image Size: 32x32          | 90.93%           |
+| LeNet-5    | Fruits-360    | Image Size: 32x32          | 91.02%           |
+| LeNet-5    | Fruits-360    | Image Size: 32x32 + Aug.   | 90.42%           |
+| ResNet-18  | Fruits-360    | Image Size: 32x32          | 96.97%           |
+
+---
