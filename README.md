@@ -26,13 +26,14 @@ $ tree -L 1
 
 **General parameters:**
 
-* batch size: 100
+* batch size: 256
 * regularization: L2
 * loss function: Cross Entropy
 * optmizer: SGD with momentum 0.9
 * initial learning rate: 0.001
 * learning rate decay factor: 0.1
 * weight decay factor for L2 weight regularization: 1e-4
+* epoches: 200
 
 ### Architecture used for MLP:
 
@@ -65,7 +66,15 @@ Optimizer: Adam
 
 ## Results Summary
 
-| Model | Dataset | Input | Accuracy | Loss |
-|--- | --- | --- | --- | --- |
-| MLP | Fashion-MNIST | Atributes: 16 | 87.44% | 0.34% |  
-| MLP | Fashion-MNIST | Image Size: 28x28 | 99.23% | 0.042% |                                                                                                
+| Model | Dataset | Input | Accuracy on Test|
+|--- | --- | --- | --- |
+| MLP | Fashion-MNIST | Atributes: 16 | 83.1% | 
+| MLP | Fashion-MNIST | Image Size: 28x28 | 89.05% |
+| LeNet-5 | Fashion-MNIST | Image Size: 28x28 | 90.63% |
+| LeNet-5 | Fashion-MNIST | Image Size: 28x28 with Augmentation | 87.55% |
+| ResNet18 | Fashion-MNIST | Image Size: 28x28 | 93.8% |                                                                     
+| MLP | Fruits-360 | Atributes: 70 | 87.98% |
+| MLP | Fruits-360 | Image Size: 32x32 | 90.93% |
+| LeNet-5 | Fruits-360 | Image Size: 32x32 | 91.02% |
+| LeNet-5 | Fruits-360 | Image Size: 32x32 with Augmentation | 90.42% |
+| ResNet18 | Fruits-360 | Image Size: 32x32 | 96.97% |
