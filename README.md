@@ -107,3 +107,4 @@ _Number of Classes_:
 
 **3. Future Improvements**: Experimenting with different augmentation techniques or fine-tuning hyperparameters could further improve performance, especially for LeNet-5 on Fashion-MNIST.
 * Augmentation Impact on Fashion-MNIST: -3.4% (LeNet-5)
+* Augmentation Impact on Fruits-360: -1.11% (LeNet-5)
